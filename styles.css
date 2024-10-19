@@ -13,6 +13,10 @@ h1 {
     text-align: center;
 }
 
+p {
+    font-size: 16px;
+}
+
 textarea {
     font-family: Poppins, Arial, sans-serif;
     font-size: 16px;
@@ -55,3 +59,39 @@ button {
 button:hover {
     background-color: #2c77da;
 }
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        font-size: 29px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    body {
+        margin: 36px;
+    }
+
+    img {
+        width: 150%;   /* Full width of the container */
+        max-width: 600px;  /* Maximum size on large screens */
+        height: auto; 
+    }
+
+    .img-container {
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+.img-container {
+    display: flex;
+}
+
+img {
+    width: 100%;
+}
+
