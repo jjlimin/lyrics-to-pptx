@@ -1,28 +1,59 @@
 
 document.getElementById('addSong').addEventListener('click', function() {
-    // Create a new element
+    // Create a new conteiner
+    const container = document.createElement('div');
+    container.classList.add('textarea-container'); // Add a class for styling purposes
+
+    // Create a new textarea
     const newTextarea = document.createElement('textarea');
-    newTextarea.id = 'lyricsInput';
+    newTextarea.classList.add('lyricsInput');
+
+    // Create a new delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'X';
+    deleteButton.classList.add('delete-button');
+
+    // Append the textarea and delete button to the container
+    container.appendChild(newTextarea);
+    container.appendChild(deleteButton);
+
+    // Add event listener to the delete button to remove the container (textarea + button)
+    deleteButton.addEventListener('click', function() {
+        container.remove();
+    });
 
     // Insert the new element before the first element
     const body = document.body;
     const buttons = document.getElementsByClassName('buttons-container')[0];
-    body.insertBefore(newTextarea, buttons);
+    body.insertBefore(container, buttons);
 });
 
 
 // when the button is clicked it gets the lyrics
 document.getElementById('generatePPT').addEventListener('click', function() {
-    const lyrics = document.getElementById('lyricsInput').value.trim();
+    // get all the textareas
+    const lyricsTextAreas = document.querySelectorAll('.lyricsInput');
+
+    // prepare empty lyrics variable
+    let allLyrics = '';
+    // get lyrics from each textarea
+    lyricsTextAreas.forEach(textarea => {
+        // given a textarea extract it's lyrics
+        const lyrics = textarea.value.trim();
+        // add to the main lyrics variable
+        if (lyrics) {
+            allLyrics += lyrics + '\n\n';
+        }
+    });
 
     // if there is no lyrics alert
-    if (!lyrics) {
+    if (!allLyrics) {
         alert('Please paste your song lyrics.');
         return;
     }
 
     // Process the lyrics into sections
-    const slidesContent = processLyrics(lyrics);
+    const slidesContent = processLyrics(allLyrics);
 
     // Generate PowerPoint
     generatePowerPoint(slidesContent);
@@ -31,12 +62,12 @@ document.getElementById('generatePPT').addEventListener('click', function() {
 /**
  * Splits the lyrics into sections based on double line breaks.
  * You can customize this function to better identify verses, choruses, etc.
- * @param {string} lyrics 
+ * @param {string} allLyrics 
  * @returns {Array} Array of lyric sections
  */
-function processLyrics(lyrics) {
+function processLyrics(allLyrics) {
     // Split lyrics by two or more line breaks
-    const sections = lyrics.split(/\n{2,}/).map(section => section.trim()).filter(section => section !== '');
+    const sections = allLyrics.split(/\n{2,}/).map(section => section.trim()).filter(section => section !== '');
     return sections;
 }
 

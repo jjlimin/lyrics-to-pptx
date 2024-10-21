@@ -17,25 +17,55 @@ p {
     font-size: 16px;
 }
 
-textarea {
+/* Container holding the textarea and delete button */
+.textarea-container {
+    position: relative;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 75%;
+    height: 50vh; /* Adjust the height of the container */
+    margin-bottom: 25px;
+}
+
+.lyricsInput {
     font-family: Poppins, Arial, sans-serif;
     font-size: 16px;
     color: #333333;
-    width: 75%;
-    height: 50vh;
+    width: 100%;
+    height: 100%;
     padding: 10px;
     font-size: 16px;
-    resize: vertical;
     transition: border-color 0.5s;
-    margin-bottom: 4px;
+    resize: none;
 }
 
-textarea:focus {
+/* Style for the delete button inside the textarea */
+.delete-button {
+    position: absolute; /* Position relative to the container */
+    top: -5px; /* Move closer to the top of the textarea */
+    right: 5px; /* Align with the right edge of the textarea */
+    background-color: rgb(189, 188, 188);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0;
+    width: 5%;
+}
+
+.delete-button:hover {
+    background-color: rgb(255, 72, 72);
+}
+
+.lyricsInput:focus {
     border: 1px solid #4c9aff;
     outline: none;         /* Remove default outline */
 }
 
-textarea::placeholder {
+.lyricsInput::placeholder {
     font-family: Poppins, Arial, sans-serif; /* Change font family */
     font-size: 16px;               /* Change font size */
     color: #888888;                /* Change font color */
@@ -86,7 +116,7 @@ button:hover {
         font-size: 29px;
     }
 
-    textarea {
+    .textarea-container {
         width: 100%;
     }
 
@@ -121,6 +151,11 @@ button:hover {
 
     #addSong {
         padding: 4px;
+    }
+
+    .delete-button {
+        width: 10%;
+        height: 8%;
     }
 }
 
