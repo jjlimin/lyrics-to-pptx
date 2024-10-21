@@ -1,4 +1,16 @@
 
+document.getElementById('addSong').addEventListener('click', function() {
+    // Create a new element
+    const newTextarea = document.createElement('textarea');
+    newTextarea.id = 'lyricsInput';
+
+    // Insert the new element before the first element
+    const body = document.body;
+    const buttons = document.getElementsByClassName('buttons-container')[0];
+    body.insertBefore(newTextarea, buttons);
+});
+
+
 // when the button is clicked it gets the lyrics
 document.getElementById('generatePPT').addEventListener('click', function() {
     const lyrics = document.getElementById('lyricsInput').value.trim();
