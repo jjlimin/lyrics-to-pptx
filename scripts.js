@@ -31,6 +31,10 @@ document.getElementById('addSong').addEventListener('click', function() {
 
 // when the button is clicked it gets the lyrics
 document.getElementById('generatePPT').addEventListener('click', function() {
+
+    // Get the checkbox status
+    const isBlackBackground = document.getElementById('blackBackgroundCheckbox').checked;
+
     // get all the textareas
     const lyricsTextAreas = document.querySelectorAll('.lyricsInput');
 
@@ -56,7 +60,7 @@ document.getElementById('generatePPT').addEventListener('click', function() {
     const slidesContent = processLyrics(allLyrics);
 
     // Generate PowerPoint
-    generatePowerPoint(slidesContent);
+    generatePowerPoint(slidesContent, isBlackBackground);
 });
 
 /**
@@ -75,12 +79,19 @@ function processLyrics(allLyrics) {
  * Generates and triggers download of the PowerPoint presentation.
  * @param {Array} slidesContent 
  */
-function generatePowerPoint(slidesContent) {
+function generatePowerPoint(slidesContent, isBlackBackground) {
     let pptx = new PptxGenJS();
 
     // loop through each section in slideContent
     slidesContent.forEach((section, index) => {
+        
         let slide = pptx.addSlide();
+
+        let backgroundColor = isBlackBackground ? '000000' : 'FFFFFF'; // Black or White background
+
+        slide.background = { fill: backgroundColor };
+
+        let textColor = isBlackBackground ? 'FFFFFF' : '000000';
 
         // Optionally, you can add titles like "Verse 1", "Chorus", etc.
         // For simplicity, we'll just add the section text
@@ -92,7 +103,7 @@ function generatePowerPoint(slidesContent) {
             fontSize: 36,    // Font size for the text.
             align: 'left',   // Text alignment (left-aligned).
             valign: 'top',   // Vertical alignment (top-aligned).
-            color: '363636', // Text color (dark gray).
+            color: textColor, // Text color (dark gray).
             bold: false,     // Bold text? (false means regular weight).
             breakLine: true  // Enable line breaks within the text box.
         });
