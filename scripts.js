@@ -84,7 +84,7 @@ function generatePowerPoint(slidesContent, isBlackBackground) {
 
     // loop through each section in slideContent
     slidesContent.forEach((section, index) => {
-        
+
         let slide = pptx.addSlide();
 
         let backgroundColor = isBlackBackground ? '000000' : 'FFFFFF'; // Black or White background
@@ -96,16 +96,16 @@ function generatePowerPoint(slidesContent, isBlackBackground) {
         // Optionally, you can add titles like "Verse 1", "Chorus", etc.
         // For simplicity, we'll just add the section text
         slide.addText(section, {
-            x: 0.5,          // Horizontal position of the text (left margin).
-            y: 1.0,          // Vertical position of the text (top margin).
-            w: '90%',        // Width of the text box (90% of the slide width).
-            h: '70%',        // Height of the text box (70% of the slide height).
-            fontSize: 36,    // Font size for the text.
-            align: 'left',   // Text alignment (left-aligned).
-            valign: 'top',   // Vertical alignment (top-aligned).
-            color: textColor, // Text color (dark gray).
-            bold: false,     // Bold text? (false means regular weight).
-            breakLine: true  // Enable line breaks within the text box.
+            x: 0.0,          // Horizontal position (0.0 means leftmost position)
+            y: 0.0,          // Vertical position (1.0 means top of the slide)
+            w: '100%',       // Set width to 100% of the slide width to allow the text to occupy full width
+            h: '100%',       // Set height to 100% of the slide height
+            fontSize: 36,    // Font size for the text
+            align: 'center', // Center the text horizontally
+            valign: 'middle',// Center the text vertically
+            color: textColor, // Text color
+            bold: false,     // Regular weight text
+            breakLine: true  // Allow text to break to new lines if necessary
         });
     });
 
