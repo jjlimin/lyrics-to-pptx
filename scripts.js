@@ -89,7 +89,7 @@ function generatePowerPoint(slidesContent) {
             y: 1.0,          // Vertical position of the text (top margin).
             w: '90%',        // Width of the text box (90% of the slide width).
             h: '70%',        // Height of the text box (70% of the slide height).
-            fontSize: 24,    // Font size for the text.
+            fontSize: 36,    // Font size for the text.
             align: 'left',   // Text alignment (left-aligned).
             valign: 'top',   // Vertical alignment (top-aligned).
             color: '363636', // Text color (dark gray).
